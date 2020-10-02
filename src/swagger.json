@@ -1,0 +1,240 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Customers-MySQL-RESTful-API",
+    "description": "A Simple RESTful API's with Express.js,mySQL",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/api/v1/",
+      "description": "Base API endpoint"
+    },
+    {
+      "url": "/api/v1/customers/",
+      "description": "API endpoint for REST API Customers"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Customers",
+      "description": "API for Customers"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Retrieve All Customers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customers"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Create a new Customers",
+        "requestBody": {
+          "description": "Customers Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Customers"
+              }
+            }
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          },
+          "400": {
+            "description": "Failed,Validation Errors"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of the Customers we want to match",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "summary": "Get Customers with given ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Customers with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customers"
+            }
+          },
+          "404": {
+            "description": "Failed. Customers not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update Customers with given ID",
+        "tags": [
+          "Customers"
+        ],
+        "requestBody": {
+          "description": "Customers Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/definitions/Customers"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Customers with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customers"
+            }
+          },
+          "400": {
+            "description": "Failed. Validation Errors"
+          },
+          "404": {
+            "description": "Failed. Customers not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Customers with given ID",
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Delete Customers with id",
+            "schema": {
+              "$ref": "#/definitions/id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Customers"
+            }
+          },
+          "404": {
+            "description": "Failed. Customers not found."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "id": {
+      "type": "string"
+    },
+    "Customers": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "address_2": {
+          "type": "string"
+        },
+        "province": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "integer"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Customers": {
+      "type": "object",
+      "properties": {
+        "customers": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/Customers"
+          }
+        }
+      }
+    }
+  }
+}
