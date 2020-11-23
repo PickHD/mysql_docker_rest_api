@@ -58,7 +58,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Customers"
+                "$ref": "#/definitions/Customer"
               }
             }
           }
@@ -85,8 +85,7 @@
           "name": "id",
           "in": "path",
           "required": true,
-          "description": "ID of the Customers we want to match",
-          "type": "string"
+          "description": "ID of the Customers we want to match"
         }
       ],
       "get": {
@@ -128,7 +127,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/definitions/Customers"
+                "$ref": "#/definitions/Customer"
               }
             }
           }
@@ -148,7 +147,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Customers"
+              "$ref": "#/definitions/Customer"
             }
           },
           "400": {
@@ -179,7 +178,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Customers"
+              "$ref": "#/definitions/Customer"
             }
           },
           "404": {
@@ -191,9 +190,9 @@
   },
   "definitions": {
     "id": {
-      "type": "string"
+      "type": "integer"
     },
-    "Customers": {
+    "Customer": {
       "type": "object",
       "properties": {
         "first_name": {
@@ -217,6 +216,9 @@
         "city": {
           "type": "string"
         },
+        "phone":{
+          "type": "integer"
+        },
         "postalCode": {
           "type": "integer"
         },
@@ -231,7 +233,7 @@
         "customers": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/Customers"
+            "$ref": "#/definitions/Customer"
           }
         }
       }
