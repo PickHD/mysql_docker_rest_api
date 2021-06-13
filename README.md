@@ -1,4 +1,4 @@
-# MySQL RESTful API
+# Docker MySQL RESTful API
 
 Includes API Server utilities:
 
@@ -24,7 +24,7 @@ Development utilities:
 ## Setup
 
 ```
-npm i
+npm install --save
 ```
 
 ## Lint
